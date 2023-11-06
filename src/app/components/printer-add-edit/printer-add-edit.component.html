@@ -1,0 +1,100 @@
+<div mat-dialog-title>
+    <h1>Add Printer</h1>
+</div>
+<form [formGroup]="printerForm" (ngSubmit)="onFormSubmit($event)">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Printer name</mat-label>
+                <input matInput type="text" placeholder="Printer Name" formControlName="printerName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Printer Make</mat-label>
+    
+                <mat-select name="Printer Make" formControlName="printerMake">
+    
+                  <mat-option disabled selected>Select Printer Make</mat-option>
+    
+                  <mat-option *ngFor="let printermakeOptions of  printermakeOptions" [value]="printermakeOptions.value">
+    
+                    {{ printermakeOptions.label }}
+    
+                  </mat-option>
+    
+                </mat-select>
+    
+              </mat-form-field>
+    
+              
+           <!-- <mat-form-field appearance="outline">
+                <mat-label>Printer Make</mat-label>
+                <mat-select name="printerMake" formControlName="printerMake">
+                  <mat-option>Select printermake </mat-option>
+                  <mat-option *ngFor="let printerMake of printermakeOptions" [value]="printerMake">
+                    {{ printermake }}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>-->
+            
+            <!--<mat-form-field appearance="outline">
+                <mat-label>Select Printer Make</mat-label>
+                <mat-select [(value)]="selectedOption">
+                    <mat-option value="Canon"> Canon </mat-option>
+                  <mat-option value="Samsung"> Samsung </mat-option>
+                  <mat-option value="Epson"> Epson </mat-option>
+                </mat-select>
+              </mat-form-field>-->             
+
+            <mat-form-field appearance="outline">
+                <mat-label>Folder To Monitor</mat-label>
+                <input matInput type="text" placeholder="folderToMonitor" formControlName="folderToMonitor">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Output Type</mat-label>
+                <input matInput type="text" placeholder="OutputType" formControlName="outputType">
+            </mat-form-field>
+            <!--<mat-form-field appearance="outline">
+                
+                <mat-label>Date of birth</mat-label>
+                <input matInput  formControlName="dob">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix ></mat-datepicker-toggle>
+                
+            </mat-form-field>-->
+
+            <mat-form-field appearance="outline">
+                <mat-label>File Output Type</mat-label>
+                <input matInput type="text" placeholder="FileOutput" formControlName="fileOutput">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-radio-group aria-label="Select an option" formControlName="active">
+
+                <mat-radio-button [value]="true">Active</mat-radio-button>
+
+                <mat-radio-button [value]="false">Inactive</mat-radio-button>
+
+              </mat-radio-group> 
+            <!--<mat-radio-group aria-label="Select an option" formControlName="active">  
+                <mat-radio-button value="active">active</mat-radio-button>
+                <mat-radio-button value="Inactive">Inactive</mat-radio-button>
+            </mat-radio-group>-->
+        </div>
+       <!--<div class="row">          
+            <mat-form-field appearance="outline">
+                <mat-label>Company</mat-label>
+                <input matInput placeholder="Ex. Google" formControlName="company">
+            </mat-form-field>
+        </div>-->
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update':'Save'}}</button>
+        <button style="position: absolute; left: 620px;" mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <!--<button style="position: absolute; left: 620px;" mat-raised-button type="button">Clear</button>-->
+    </div>
+</form>

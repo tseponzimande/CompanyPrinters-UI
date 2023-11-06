@@ -1,0 +1,124 @@
+<div class="outer">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+        <div class="panel border bg-white">
+          <div class="panel-heading">
+            <h3 class="pt-3 font-weight-bold">sign up</h3>
+          </div>
+          <div class="panel-body p-3">
+            <form [formGroup]="signUpForm">
+              <div class="form-group pt-3">
+                <div class="input-field" [class.error]="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required','firstName')">
+                  <span class="fa fa-user-o p-2"></span>
+                  <input formControlName="firstName" type="text" placeholder="Firstname">
+                </div>
+              </div>
+              <small *ngIf="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required','firstName')" class="text-danger">*First Name is required*</small>
+              <div class="form-group pt-3">
+                <div class="input-field" [class.error]="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')">
+                  <span class="fa fa-user-o p-2"></span>
+                  <input formControlName="lastName" type="text" placeholder="Lastname">
+                </div>
+              </div>
+              <small *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')" class="text-danger">*Last Name is required*</small>
+              <div class="form-group pt-3">
+                <div class="input-field" [class.error]="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">
+                  <span class="fa fa-envelope-o p-2"></span>
+                  <input formControlName="email" type="text" placeholder="Email">
+                </div>
+              </div>
+              <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')" class="text-danger">*Email is required*</small>
+              <div class="form-group pt-3">
+                <div class="input-field" [class.error]="signUpForm.controls['userName'].dirty && signUpForm.hasError('required','userName')">
+                  <span class="fa fa-user-o p-2"></span>
+                  <input formControlName="userName" type="text" placeholder="Username">
+                </div>
+              </div>
+              <small *ngIf="signUpForm.controls['userName'].dirty && signUpForm.hasError('required','userName')" class="text-danger">*Username is required*</small>
+              <div class="form-group pt-3">
+                <div class="input-field" [class.error]="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">
+                  <span class="fa fa-key p-2"></span>
+                  <input formControlName="password" [type]="type" placeholder="Password">
+                  <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                </div>
+              </div>
+              <small *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')" class="text-danger">*Password is required*</small>
+              <div class="form-group pt-3">
+                <!--<div class="input-field" [class.error]="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')">-->
+                  <span class="fa fa-address-card-o p-2"></span>
+                 <!--<input formControlName="address" type="text" placeholder="Address">-->
+
+                 <div id='printoutPanel'></div>
+
+        <div id='searchBoxContainer'><input type= 'text' formControlName="address" id= 'searchBox' placeholder="address" /></div>
+        
+        <div id='myMap' style='width: 100vw; height: 5vh;'></div>
+        
+                </div>
+              <!--</div>-->
+              <!--<small *ngIf="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')" class="text-danger">*address is required*</small>-->
+              <button type="submit" class="btn btn-primary btn-block mt-4 w-100" (click)="onSubmit()">Sign Up</button>
+              <div class="text-center pt-4 text-muted">Already have account?<a id="forget" routerLink="/login">Login</a>
+              </div>
+            </form>
+          </div>
+          <!-- <div class="mx-3 my-2 py-2 bordert">
+            <div class="text-center py-3">
+
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type='text/javascript'>
+   function loadMapScenario() {
+                Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+                    callback: onLoad,
+                    errorCallback: onError
+                });
+                function onLoad() {
+                    var options = { maxResults: 5, businessSuggestions: true };
+                    var manager = new Microsoft.Maps.AutosuggestManager(options);
+                    manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+                }
+                function onError(message) {
+                    document.getElementById('printoutPanel').innerHTML = message;
+                }
+                function selectedSuggestion(suggestionResult) {
+                    document.getElementById('printoutPanel').innerHTML =
+                        'Suggestion: ' + suggestionResult.formattedSuggestion;
+                }
+                
+            }
+  
+</script>
+<script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=Al7bopkhZpa7DeStIuDGQQISefR-wffsN0FM2gDTTCMcEfl492E2NFraUwBgdiNu' async defer></script>
+<!--<script>
+  var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+    /* No need to set credentials if already passed in URL */
+    center: new Microsoft.Maps.Location(47.606209, -122.332071),
+    zoom: 12
+});
+Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', function () {
+    var options = {
+        maxResults: 4,
+        map: map
+    };
+    var manager = new Microsoft.Maps.AutosuggestManager(options);
+    manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+});
+function selectedSuggestion(suggestionResult) {
+    map.entities.clear();
+    map.setView({ bounds: suggestionResult.bestView });
+    var pushpin = new Microsoft.Maps.Pushpin(suggestionResult.location);
+    map.entities.push(pushpin);
+    document.getElementById('printoutPanel').innerHTML =
+        'Suggestion: ' + suggestionResult.formattedSuggestion +
+            '<br> Lat: ' + suggestionResult.location.latitude +
+            '<br> Lon: ' + suggestionResult.location.longitude;
+}
+
+</script>-->

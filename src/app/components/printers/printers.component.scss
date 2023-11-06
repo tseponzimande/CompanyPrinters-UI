@@ -1,0 +1,17 @@
+.mat-mdc-table {
+    table-layout: auto;
+    white-space: normal;
+    width: 100%;
+    table-layout: fixed;
+}
+.button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    position: absolute;
+    padding: 1em;
+    height: 5%;
+    border-radius: 20px;
+    width: 80%;
+}

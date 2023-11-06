@@ -1,0 +1,262 @@
+<!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+-->
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
+    <h3>Printer Management</h3>
+  </a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!--<input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search"
+    aria-label="Search">-->
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a style="background: red; color: #fff; border-radius: 4px; margin: 10px;" class="nav-link px-3 cursor-pointer"
+        (click)="logout()">Sign out</a>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <ng-container>
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+          <ul class="nav flex-column">
+            <!--<li class="nav-item">
+                            <a class="nav-link active" aria-current="page" routerLink="/printers">
+                                <i class="fa fa-print" aria-hidden="true"></i> Printer Dashboard
+                            </a>
+                        </li>-->
+            <ng-container>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/dashboard">
+                  <i class="fa fa-user-o" aria-hidden="true"></i> Users
+                </a>
+              </li>
+              <!-- <li class="nav-item">
+                                <a class="nav-link" routerLink="/printers">
+                                     Printers
+                                </a>
+                            </li>-->
+            </ng-container>
+          </ul>
+        </div>
+      </nav>
+    </ng-container>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+     <!-- <div class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand">
+          <div class=""></div>
+        </div>
+        <div class="chartjs-size-monitor-shrink">
+          <div class=""></div>
+        </div>
+      </div>-->
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Filter Printers</h1>
+      </div>
+    
+      <!--<form #addClientForm="ngForm" (ngSubmit)="searchDataComponent()" novalidate>  
+        <div class="row" style="margin-top:10px;margin-bottom: 10px;">    
+          <div class="col-sm-3 form-group">  </div>  
+      <div class="col-sm-3 form-group">    
+          <input  
+          type="text" #startdate="ngModel" name="startdate"  
+          [(ngModel)]="model.startdate"   
+          placeholder="From Date"  
+          bsDatepicker  
+          [bsConfig]="{ isAnimated: true }" class="form-control"/>  
+      </div>     
+      <div class="col-sm-3 form-group">    
+          <input type="text"  #enddate="ngModel" name="enddate"  
+          [(ngModel)]="model.enddate"   
+          placeholder="To Date"  
+           
+          bsDatepicker  
+          [bsConfig]="{ isAnimated: true }"  class="form-control"/>  
+      </div>    
+      <div class="col-sm-3 form-group">    
+          <button type="submit" class="btn btn-success" >Search</button>   
+      </div>  
+    </div>  
+      </form>-->
+
+
+      <!--  ================================================= Add-Edit-start ===================================================== -->
+
+      <mat-toolbar color="primary">
+        <!--<span>Crud Application</span>-->
+        <span class="example-spacer"></span>
+        <!--<button mat-raised-button (click)="openAddEditPrinterForm()">
+          ADD PRINTER
+        </button>-->
+      </mat-toolbar>
+
+      
+      <!--  ================================================= Add-Edit-end  ===================================================== -->
+      <!-- New data -->
+
+     
+      <!--<form #addClientForm="ngForm" (ngSubmit)="searchdata()" novalidate>
+        <div class="row" style="margin-top:10px;margin-bottom: 10px;">
+          <div class="col-sm-3 form-group">  </div>
+      <div class="col-sm-3 form-group">
+          <input
+          type="text" #startdate="ngModel" name="startdate"
+          [(ngModel)]="model.startdate"
+          placeholder="From Date"
+          bsDatepicker
+          [bsConfig]="{ isAnimated: true }" class="form-control"/>
+      </div>
+      <div class="col-sm-3 form-group">
+          <input type="text"  #enddate="ngModel" name="enddate"
+          [(ngModel)]="model.enddate"
+          placeholder="To Date"
+    
+          bsDatepicker
+          [bsConfig]="{ isAnimated: true }"  class="form-control"/>
+      </div>
+      <div class="col-sm-3 form-group">
+          <button type="submit" class="btn btn-success" >Search</button>
+      </div>
+    </div>
+      </form>-->
+      <mat-form-field style="position: absolute; right: 620px;" [color]="colorControl.value!">
+        <mat-label>Printer Make</mat-label>
+        <mat-select name="printerMake" formControlName="printerMake" [(ngModel)]="model.PrinterMake"  >
+    
+          <!--<mat-option disabled selected>Select Printer Make</mat-option>-->
+
+          <mat-option *ngFor="let printermakeOption of  printermakeOptions" [value]="printermakeOption.label">
+
+            {{ printermakeOption.label }}
+
+          </mat-option>
+
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field style="position: absolute; right: 600px; top: 320px;">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <!--#startdate="ngModel" [(ngModel)]="model.printerMake"-->
+          <!--#enddate="ngModel name="startdate"" name="enddate"-->
+          <input matStartDate  type="text" placeholder="From Date" [(ngModel)]="model.startdate">
+
+          <input matEndDate type="text" placeholder="To Date" [(ngModel)]="model.enddate">
+
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+      <button style="position: absolute; right: 800px; top: 430px;" mat-raised-button color="primary" mat-raised-button (click)="openAddEditPrinterForm()">Add Printer</button>
+      <button style="position: absolute; right: 700px; top: 430px;" mat-raised-button color="primary" type="submit" (click)="searchdata()">Filter</button>
+      <button style="position: absolute; right: 600px; top: 430px;" mat-raised-button color="primary" type="reset" (click)="clearFilters()">Clear</button>
+      
+      
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <div class="content" role="main" style="position: absolute; top: 500px;">
+
+        <div class="mat-elevation-z8">
+
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput placeholder="Filter" (keyup)="filterchange($event)">
+
+          </mat-form-field>
+
+          <table mat-table matSort [dataSource]="printers">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="printerName">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>PrinterName <br /><br /><br /><br /><br /><br /><br /><input (input)="applyFilter('printerName', $event)" placeholder="Printer Name" /> </th>
+              <td mat-cell *matCellDef="let printer"> {{printer.printerName}} </td>
+            </ng-container>
+            
+              <!-- Name Column -->
+           <!--<ng-container matColumnDef="printerMakeID">
+              <th mat-header-cell mat-sort-header *matHeaderCellDef>PrinterMake</th>
+              <td mat-cell *matCellDef="let printer"> {{printer.printerMakeID}} </td>
+            </ng-container>-->
+            <ng-container matColumnDef="printerMake">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>Printer Make <br /><br /><br /><br /><br /><br /><br /><input (input)="applyFilter('printerMake', $event)" placeholder="Printer Make" /> </th>
+                <td mat-cell *matCellDef="let printer"> {{printer.printerMake}}</td>
+              </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="folderToMonitor">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>FolderToMonitor <br /><br /><br /><br /><br /><br /><br /><input (input)="applyFilter('folderToMonitor', $event)" placeholder="folderToMonitor" /></th>
+              <td mat-cell *matCellDef="let printer"> {{printer.folderToMonitor}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="outputType">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>OutputType <br /><br /><br /><br /><br /><br /><br /><input (input)="applyFilter('outputType', $event)" placeholder="outputType " /></th>
+              <td mat-cell *matCellDef="let printer"> {{printer.outputType}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="fileOutput">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>FileOutput <br /><br /><br /><br /><br /><br /><br /><input (input)="applyFilter('fileOutput', $event)" placeholder="fileOutput" /></th>
+              <td mat-cell *matCellDef="let printer"> {{printer.fileOutput}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="active">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Active <br /><br /><br /><br /><br /><br /><br /><input (input)="applyFilter('active', $event)" placeholder="active" /></th>
+              <td mat-cell *matCellDef="let printer"> {{printer.active}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="createTimeStamp">
+              <th mat-sort-header mat-header-cel *matHeaderCellDef>CreateTimeStamp <br /><br /><br /><br /><br /><br /><br /><input (input)="applyFilter('createTimeStamp', $event)" placeholder="createTimeStamp" /></th>
+              <td mat-cell *matCellDef="let printer"> {{printer.createTimeStamp}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef>Action</th>
+              <td mat-cell *matCellDef="let printer">
+
+                <button mat-raised-button color="primary" (click)="openEditForm(printer)">Edit</button> |
+
+                <button mat-raised-button color="warn" (click)="setDelete(printer.engenPrintersID)">Delete</button> 
+        
+                <!-- <button mat-raised-button color="warn">Multi</button>-->
+                
+                  <!--<mat-checkbox [(ngModel)]="row.selected"></mat-checkbox>-->
+                     
+              </td>
+              
+              
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr (click)="getrow(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+          <mat-paginator [pageSizeOptions]="[5,10,15,20,25,30]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+
+          </mat-paginator>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</div>

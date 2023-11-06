@@ -1,0 +1,64 @@
+<div mat-dialog-title>
+    <h1>Add User</h1>
+</div>
+<form [formGroup]="userForm" (ngSubmit)="onFormSubmit($event)"> 
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" placeholder="First Name" formControlName="firstName">
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" placeholder="Last Name" formControlName="lastName">
+            </mat-form-field>
+        </div>
+            <!--<mat-form-field appearance="outline">
+                <mat-label>Printer Make</mat-label>
+                <mat-select name="printerMake" formControlName="printerMakeID">
+                  <mat-option>Select printermake </mat-option>
+                  <mat-option *ngFor="let printermake of printermakeOptions" [value]="printermake.printerMakeID">
+                    {{ printermake.label }}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>-->
+        <div class="row">
+            <!--<mat-form-field appearance="outline">
+                <mat-label>Select Designation</mat-label>
+                <mat-select [(value)]="selectedOption">
+                    <mat-option value="Manager"> Manager </mat-option>
+                  <mat-option value="System Administrator"> System Administrator </mat-option>
+                  <mat-option value="Level 1 Employee"> Level 1 Employee </mat-option>
+                </mat-select>
+            </mat-form-field>-->           
+
+            <mat-form-field appearance="outline">
+                <mat-label>email</mat-label>
+                <input matInput type="text" placeholder="Email" formControlName="email">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" placeholder="Username" formControlName="username">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="text" placeholder="Password" formControlName="password">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" placeholder="Address" formControlName="address">
+            </mat-form-field>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update':'Save'}}</button>
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    </div>
+</form>
